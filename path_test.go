@@ -1,6 +1,7 @@
 package graph
 
 import (
+	"fmt"
 	"math/rand"
 	"testing"
 )
@@ -62,4 +63,16 @@ func BenchmarkShortestPaths(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		_, _ = ShortestPaths(g, 0)
 	}
+}
+
+func TestLongestPath(t *testing.T) {
+	g := New(6)
+	g.AddCost(0, 1, 100)
+	g.AddCost(0, 2, 1)
+	g.AddCost(2, 3, 3)
+	g.AddCost(1, 4, 10)
+	g.AddCost(3, 4, 10)
+	path, dist := LongestPath(g, 0, 4)
+	fmt.Println(path)
+	fmt.Println(dist)
 }
